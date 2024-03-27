@@ -2,13 +2,13 @@
 
 export default function Page() {
   return (
-    <div className="w-screen h-screen">
-      <div className="top-side bg-blue-300 w-screen h-1/6">
+    <main className="flex min-h-screen flex-col">
+      <div className="flex h-32 shrink-0 items-end rounded-lg bg-blue-300 p-4">
         
       </div>
-      <div className="bottom-side bg-orange-200 h-full">
+      <div className="flex mt-4 grow flex-col gap-4 bg-orange-200">
 
       </div>
-    </div>
+    </main>
   );
 }
