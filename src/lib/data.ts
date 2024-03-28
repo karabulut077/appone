@@ -1,2 +1,2 @@
 
-// fetch datas with rest api
+// fetch data
