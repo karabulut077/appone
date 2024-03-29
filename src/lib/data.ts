@@ -2,6 +2,7 @@
 // data source = src/lib/temp/placeholder-data.js or ./temp/placeholder-data.js
 
 import { unstable_noStore } from "next/cache";
+import { Product } from "./definitions";
 
 export async function fetchProducts(){
     /*  
@@ -23,6 +24,15 @@ export async function fetchProducts(){
     let idx2 = Math.floor(Math.random() * 6);
     const response = await fetch('https://66055db72ca9478ea18021fc.mockapi.io/products', { next: { revalidate: 10 } });
     const products = await response.json();
-    
+
+    /*
+        static rendering on production: 
+            ?   build alırken ve re-render zamanı fonksiyonu iki kez çalıştırıyor
+
+        static rendering on dev: 
+            ?   devde build alınmadığı için dinamik rendering gibi çalışıyor
+    */
+
+
     return [products[idx1], products[idx2]];
 }
