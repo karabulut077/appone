@@ -1,6 +1,6 @@
 
 import Image from "next/image";
-import { Product } from "../definitions";
+import type { Product } from "../definitions";
 
 export default function Product({product}: {
     product: Product
