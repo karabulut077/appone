@@ -10,6 +10,8 @@ export default async function Page() {
       market_data
     ] = await parseProducts();
     
+    // toDo: make some parts of component static
+  
   return (
     <main className="flex min-h-screen flex-col">
       <div className="flex flex-col rounded-lg p-4">
@@ -27,7 +29,7 @@ export default async function Page() {
         </div>
       </div>
       <div className="flex mt-4 grow flex-col gap-4 bg-white-200 items-center">
-        <div className="flex flex-col">
+        <div className="flex flex-col bg-lime-300">
             <div className="flex items-center justify-center">
               <b>elektronik</b>
             </div>
@@ -39,7 +41,7 @@ export default async function Page() {
               }
             </div>
         </div>
-        <div>
+        <div className="flex flex-col bg-lime-300">
             <div className="flex items-center justify-center">
               <b>giyim</b>
             </div>
@@ -51,7 +53,7 @@ export default async function Page() {
               }
             </div>
         </div>
-        <div>
+        <div className="flex flex-col bg-lime-300">
             <div className="flex items-center justify-center">
               <b>kozmetik</b>
             </div>
@@ -63,7 +65,7 @@ export default async function Page() {
               }
             </div>
         </div>
-        <div>
+        <div className="flex flex-col bg-lime-300">
             <div className="flex items-center justify-center">
               <b>market</b>
             </div>

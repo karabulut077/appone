@@ -4,8 +4,10 @@ import { unstable_noStore } from "next/cache";
 import { Product } from "./definitions";
 
 async function fetchProducts() {
-    unstable_noStore();
+    unstable_noStore(); // dynamic rendering
     console.log("fetching products ...", Date.now());
+
+    await new Promise((resolve) => setTimeout(resolve, 2500));
 
     const response = await fetch('https://66055db72ca9478ea18021fc.mockapi.io/products');
     const products: Product[] = await response.json();
