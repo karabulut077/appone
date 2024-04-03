@@ -7,7 +7,7 @@ async function fetchProducts() {
     unstable_noStore(); // dynamic rendering
     console.log("fetching products ...", Date.now());
 
-    // await new Promise((resolve) => setTimeout(resolve, 5000)); // dev - daha sonra bakılacak
+    await new Promise((resolve) => setTimeout(resolve, 5000)); // dev - daha sonra bakılacak
 
     const response = await fetch('https://66055db72ca9478ea18021fc.mockapi.io/products');
     const products: Product[] = await response.json();
