@@ -11,7 +11,7 @@ export default async function InitialProducts() {
       ] = await parseProducts();
 
     return (
-        <div className="flex mt-4 grow flex-col gap-4 bg-white-200 items-center DYNAMIC">
+        <div className="flex mt-4 grow flex-col gap-4 bg-white-200 items-center">
             <div className="flex flex-col bg-lime-300">
                 <div className="flex items-center justify-center">
                     <b>elektronik</b>
