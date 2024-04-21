@@ -24,7 +24,7 @@ export default async function InitialProducts() {
                     }
                 </div>
             </div>
-            <div className="flex flex-col bg-lime-300">
+            <div className="flex flex-col bg-blue-300">
                 <div className="flex items-center justify-center">
                     <b>giyim</b>
                 </div>
@@ -36,7 +36,7 @@ export default async function InitialProducts() {
                     }
                 </div>
             </div>
-            <div className="flex flex-col bg-lime-300">
+            <div className="flex flex-col bg-blue-300">
                 <div className="flex items-center justify-center">
                     <b>kozmetik</b>
                 </div>
@@ -48,7 +48,7 @@ export default async function InitialProducts() {
                     }
                 </div>
             </div>
-            <div className="flex flex-col bg-lime-300">
+            <div className="flex flex-col bg-blue-300">
                 <div className="flex items-center justify-center">
                     <b>market</b>
                 </div>
