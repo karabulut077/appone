@@ -1,17 +1,9 @@
 
-import { parseProducts } from "@/lib/data";
-import Product from "@/lib/components/Product";
+
+import { Suspense } from "react";
+import InitialProducts from "@/lib/components/InitialProducts";
 
 export default async function Page() {
-  const [
-      electronic_data,
-      clothing_data,
-      cosmetic_data,
-      market_data
-    ] = await parseProducts();
-    
-    // toDo: make some parts of component static
-  
   return (
     <main className="flex min-h-screen flex-col">
       <div className="flex flex-col rounded-lg p-4">
@@ -28,56 +20,9 @@ export default async function Page() {
             <label>market</label>
         </div>
       </div>
-      <div className="flex mt-4 grow flex-col gap-4 bg-white-200 items-center">
-        <div className="flex flex-col bg-lime-300">
-            <div className="flex items-center justify-center">
-              <b>elektronik</b>
-            </div>
-            <div className="flex flex-row items-center justify-center">
-              {
-                electronic_data.map(product => 
-                  <Product key={product.id} product={product}/>
-                )
-              }
-            </div>
-        </div>
-        <div className="flex flex-col bg-lime-300">
-            <div className="flex items-center justify-center">
-              <b>giyim</b>
-            </div>
-            <div className="flex flex-row items-center justify-center">
-              {
-                clothing_data.map(product => 
-                  <Product key={product.id} product={product}/>
-                )
-              }
-            </div>
-        </div>
-        <div className="flex flex-col bg-lime-300">
-            <div className="flex items-center justify-center">
-              <b>kozmetik</b>
-            </div>
-            <div className="flex flex-row items-center justify-center">
-              {
-                cosmetic_data.map(product => 
-                  <Product key={product.id} product={product}/>
-                )
-              }
-            </div>
-        </div>
-        <div className="flex flex-col bg-lime-300">
-            <div className="flex items-center justify-center">
-              <b>market</b>
-            </div>
-            <div className="flex flex-row items-center justify-center">
-              {
-                market_data.map(product => 
-                  <Product key={product.id} product={product}/>
-                )
-              }
-            </div>
-        </div>
-      </div>
+      <Suspense fallback={<p>Loading products ...</p>}>
+        <InitialProducts />
+      </Suspense>
     </main>
   );
 }
