@@ -9,7 +9,7 @@ export default async function Page() {
       <div className="flex flex-col rounded-lg p-4">
         <div className="flex flex-row bg-blue-300 space-x-12 h-32 shrink-0 items-center justify-center">
           <label>logo</label>
-          <input type="search" placeholder="ürün arayın" />
+          <input type="search" placeholder="ürün arayınız" />
           <button type="submit">hesabım</button>
           <button type="submit">sepetim</button>
         </div>
