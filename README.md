@@ -1,1 +1,1 @@
-nanelimon.com e-commerce project
+hobby e-commerce project
