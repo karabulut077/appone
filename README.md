@@ -1,1 +1,2 @@
-nanelimon.com e-commerce project
+hobby e-commerce project  
+sorry about ugly ui
