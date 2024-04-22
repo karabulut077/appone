@@ -1,9 +1,15 @@
 
 
 import { unstable_noStore } from "next/cache";
-import { Product } from "./definitions";
+import { Product } from "@/lib/definitions";
+
+export async function getProductByID(id: string){
+    return undefined;
+}
 
 async function fetchProducts() {
+    // toDo: tüm ürünler yerine belirli sayıda ürün çek (belki burada değil servis tarafında yapılabilir)
+
     unstable_noStore(); // dynamic rendering
     console.log("fetching products ...", Date.now());
 
