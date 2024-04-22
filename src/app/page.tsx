@@ -20,7 +20,7 @@ export default async function Page() {
             <label>market</label>
         </div>
       </div>
-      <Suspense fallback={<p>Loading products dev...</p>}>
+      <Suspense fallback={<p>Loading products main...</p>}>
         <InitialProducts />
       </Suspense>
     </main>
