@@ -1,14 +1,14 @@
 
 import Image from "next/image";
-import type { Product } from "../definitions";
+import type { Product } from "@/lib/definitions";
 
 export default function Product({product}: {
     product: Product
 }){
     return(
-        <div className="flex flex-col">
+        <div className="flex flex-col bg-blue-300">
             <Image 
-                src={"https://www.colgateprofessional.com/content/dam/cp-sites/oral-care/professional2020/en-us/products/toothbrushes/colgate-360-toothbrush.png"}
+                src={product.img_src}
                 width={250} height={250}
                 alt="product picture"
             />

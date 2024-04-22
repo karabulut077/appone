@@ -5,6 +5,6 @@ export type Product = {
     name: string,
     category: string,
     price: number,
-    image_src: string,
+    img_src: string,
     owner: string
 };
