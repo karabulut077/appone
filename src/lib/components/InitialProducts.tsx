@@ -4,11 +4,12 @@ import Product from "@/lib/components/Product";
 import { promises as fs } from "fs";
 import type { ProductType } from "../definitions";
 import { fetchInitialProductsFromDb } from "../data";
+import path from "path";
 
 export default async function InitialProducts() {
     const initialProducts = await fetchInitialProductsFromDb();
 
-    await writeDataToLocalFile('/src/json/initialproducts.json', initialProducts);
+    await writeDataToLocalFile(path.resolve('src/json/initialproducts.json'), initialProducts);
 
     const [
         electronic_data, clothing_data, cosmetic_data, market_data

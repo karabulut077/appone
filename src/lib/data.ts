@@ -3,14 +3,17 @@
 import { unstable_noStore } from "next/cache";
 import { ProductType } from "@/lib/definitions";
 import { promises as fs } from "fs";
+import path from "path";
 
 export async function getProductFromLocalFileByID(id: string) {
 
     console.log("fetching product from local json file ...");
 
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
     let fileData: ProductType[] = [];
 
-    await fs.readFile('src/json/initialproducts.json', 'utf-8')
+    await fs.readFile(path.resolve('src/json/initialproducts.json'), 'utf-8')
         .then((data) => {
             fileData = JSON.parse(data);
         })
