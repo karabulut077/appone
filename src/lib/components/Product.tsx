@@ -6,7 +6,7 @@ export default function Product({product}: {
     product: Product
 }){
     return(
-        <div className="flex flex-col bg-blue-300">
+        <div className="flex flex-col bg-lime-100">
             <Image 
                 src={product.img_src}
                 width={250} height={250}

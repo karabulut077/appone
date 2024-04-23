@@ -12,8 +12,8 @@ export default async function InitialProducts() {
       ] = await parseProducts();
 
     return (
-        <div className="flex mt-4 grow flex-col gap-6 bg-white-200 items-center">
-            <div className="flex flex-col bg-blue-300">
+        <div className="flex mt-4 grow flex-col gap-4 items-center bg-orange-100">
+            <div className="flex flex-col bg-sky-200">
                 <div className="flex items-center justify-center">
                     <b>elektronik</b>
                 </div>
@@ -27,7 +27,7 @@ export default async function InitialProducts() {
                     }
                 </div>
             </div>
-            <div className="flex flex-col bg-blue-300">
+            <div className="flex flex-col bg-sky-200">
                 <div className="flex items-center justify-center">
                     <b>giyim</b>
                 </div>
@@ -41,7 +41,7 @@ export default async function InitialProducts() {
                     }
                 </div>
             </div>
-            <div className="flex flex-col bg-blue-300">
+            <div className="flex flex-col bg-sky-200">
                 <div className="flex items-center justify-center">
                     <b>kozmetik</b>
                 </div>
@@ -55,7 +55,7 @@ export default async function InitialProducts() {
                     }
                 </div>
             </div>
-            <div className="flex flex-col bg-blue-300">
+            <div className="flex flex-col bg-sky-200">
                 <div className="flex items-center justify-center">
                     <b>market</b>
                 </div>
