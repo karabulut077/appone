@@ -115,11 +115,11 @@ function parseInitialProducts(initialProducts: ProductType[]) {
 async function writeDataToLocalFile(fileName: string, initialProducts: ProductType[]) {
     const filePath = path.join('/tmp', fileName);
 
-    /*fs.unlink('path/file.txt').then(() => {
+    fs.unlink(filePath).then(() => {
         console.log(filePath, 'was deleted');
     }).then(err => {
         console.error('Error removing local file:', err);
-    });*/
+    });
 
     await fs.writeFile(filePath, JSON.stringify(initialProducts, null, 4), 'utf8')
         .then(() => {
