@@ -117,7 +117,7 @@ async function writeDataToLocalFile(fileName: string, initialProducts: ProductTy
 
     fs.writeFile(filePath, JSON.stringify(initialProducts, null, 4), 'utf8')
         .then(() => {
-            console.log('InitialProducts written to local file successfully.');
+            console.log('InitialProducts written to local file successfully.', filePath);
         })
         .catch((err) => {
             console.error('Error writing local file:', err);
