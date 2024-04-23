@@ -8,7 +8,7 @@ import { fetchInitialProductsFromDb } from "../data";
 export default async function InitialProducts() {
     const initialProducts = await fetchInitialProductsFromDb();
 
-    await writeDataToLocalFile('src/json/initialproducts.json', initialProducts);
+    await writeDataToLocalFile('/src/json/initialproducts.json', initialProducts);
 
     const [
         electronic_data, clothing_data, cosmetic_data, market_data

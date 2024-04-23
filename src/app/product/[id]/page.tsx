@@ -5,7 +5,6 @@ export default async function Page({ params }: { params: { id: string } }) {
   const { id } = params;
   let product = await getProductFromLocalFileByID(id);
 
-
   return (
     <div>
       <h2>id: { product?.id } </h2>
