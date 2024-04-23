@@ -13,7 +13,7 @@ export async function getProductFromLocalFileByID(id: string) {
 
     let fileData: ProductType[] = [];
 
-    await fs.readFile(path.resolve('src/tmp/json/initialproducts.json'), 'utf-8')
+    await fs.readFile(path.resolve('src/tmp/initialproducts.json'), 'utf-8')
         .then((data) => {
             fileData = JSON.parse(data);
         })
