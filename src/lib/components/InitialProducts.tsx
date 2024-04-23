@@ -9,7 +9,7 @@ import path from "path";
 export default async function InitialProducts() {
     const initialProducts = await fetchInitialProductsFromDb();
 
-    await writeDataToLocalFile(path.resolve('src/tmp/initialproducts.json'), initialProducts);
+    await writeDataToLocalFile('initialproducts.json', initialProducts);
 
     const [
         electronic_data, clothing_data, cosmetic_data, market_data
@@ -112,7 +112,9 @@ async function parseInitialProducts(initialProducts: ProductType[]) {
     return [electronic_data, clothing_data, cosmetic_data, market_data];
 }
 
-async function writeDataToLocalFile(filePath: string, initialProducts: ProductType[]) {
+async function writeDataToLocalFile(fileName: string, initialProducts: ProductType[]) {
+    const filePath = path.join('/tmp', fileName);
+
     fs.writeFile(filePath, JSON.stringify(initialProducts, null, 4), 'utf8')
         .then(() => {
             console.log('InitialProducts written to local file successfully.');
