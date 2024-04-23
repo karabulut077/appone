@@ -1,63 +1,37 @@
 
 
 import { unstable_noStore } from "next/cache";
-import { Product } from "@/lib/definitions";
+import { ProductType } from "@/lib/definitions";
+import { promises as fs } from "fs";
 
-export async function getProductByID(id: string){
-    unstable_noStore(); // dynamic rendering
-    console.log("fetching product by id ...", Date.now());
+export async function getProductFromLocalFileByID(id: string) {
 
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    console.log("fetching product from local json file ...");
 
-    const response = await fetch('https://66055db72ca9478ea18021fc.mockapi.io/product');
-    const product: Product = await response.json();
+    let fileData: ProductType[] = [];
 
-    return product;
+    await fs.readFile('src/json/initialproducts.json', 'utf-8')
+        .then((data) => {
+            fileData = JSON.parse(data);
+        })
+        .catch((err) => {
+            console.error('Error reading file:', err);
+        });
+
+    return fileData.find(product => product.id === id);
 }
 
-async function fetchProducts() {
+export async function fetchInitialProductsFromDb() {
     // toDo: tüm ürünler yerine belirli sayıda ürün çek (belki burada değil servis tarafında yapılabilir)
 
     unstable_noStore(); // dynamic rendering
-    console.log("fetching products ...", Date.now());
+    console.log("fetching products ...");
 
 
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
     const response = await fetch('https://66055db72ca9478ea18021fc.mockapi.io/products');
-    const products: Product[] = await response.json();
+    const products: ProductType[] = await response.json();
 
     return products;
-}
-
-
-export async function parseProducts(){
-    const products = await fetchProducts();
-
-    let electronic_data: Product[] = [];
-    let clothing_data: Product[] = [];
-    let cosmetic_data: Product[] = [];
-    let market_data: Product[] = [];
-
-    products.forEach(product => {
-        let category = product.category;
-        switch(category){
-            case "electronic":
-                electronic_data.push(product);
-                break;
-            case "clothing":
-                clothing_data.push(product);
-                break;
-            case "cosmetic":
-                cosmetic_data.push(product);
-                break;
-            case "market":
-                market_data.push(product);
-                break;
-            default:
-                break;
-        }
-    });
-    
-    return [electronic_data, clothing_data, cosmetic_data, market_data];
 }
