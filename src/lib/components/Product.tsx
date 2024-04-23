@@ -1,9 +1,9 @@
 
 import Image from "next/image";
-import type { Product } from "@/lib/definitions";
+import type { ProductType } from "@/lib/definitions";
 
 export default function Product({product}: {
-    product: Product
+    product: ProductType
 }){
     return(
         <div className="flex flex-col bg-lime-100">
