@@ -9,7 +9,7 @@ import path from "path";
 export default async function InitialProducts() {
     const initialProducts = await fetchInitialProductsFromDb();
 
-    await writeDataToLocalFile(path.resolve('src/json/initialproducts.json'), initialProducts);
+    await writeDataToLocalFile(path.resolve('src/tmp/json/initialproducts.json'), initialProducts);
 
     const [
         electronic_data, clothing_data, cosmetic_data, market_data
