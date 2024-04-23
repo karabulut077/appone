@@ -13,7 +13,7 @@ export default async function InitialProducts() {
 
     const [
         electronic_data, clothing_data, cosmetic_data, market_data
-    ] = await parseInitialProducts(initialProducts);
+    ] = parseInitialProducts(initialProducts);
 
     return (
         <div className="flex mt-4 grow flex-col gap-4 items-center bg-orange-100">
@@ -82,7 +82,7 @@ export default async function InitialProducts() {
 }
 
 
-async function parseInitialProducts(initialProducts: ProductType[]) {
+function parseInitialProducts(initialProducts: ProductType[]) {
 
     let electronic_data: ProductType[] = [];
     let clothing_data: ProductType[] = [];
