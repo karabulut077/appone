@@ -13,7 +13,6 @@ export default function Product({product}: {
                 alt="product picture"
             />
             <label>{product.name} </label>
-            <label>({product.category})</label>
         </div>
     );
 }

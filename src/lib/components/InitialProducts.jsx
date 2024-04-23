@@ -9,7 +9,7 @@ export default async function InitialProducts() {
         clothing_data,
         cosmetic_data,
         market_data
-      ] = await parseProducts();
+    ] = await parseProducts();
 
     return (
         <div className="flex mt-4 grow flex-col gap-4 items-center bg-orange-100">
@@ -20,7 +20,11 @@ export default async function InitialProducts() {
                 <div className="flex flex-row items-center justify-center gap-4">
                     {
                         electronic_data.map(product =>
-                            <Link key={product.id} href={`/product/${product.id}`}>
+                            <Link key={product.id} href={
+                                {
+                                    pathname: `/product/${product.id}`                               
+                                }
+                            }>
                                 <Product key={product.id} product={product} />
                             </Link>
                         )
