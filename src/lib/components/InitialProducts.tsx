@@ -1,15 +1,18 @@
 
 import Link from "next/link";
-import { parseProducts } from "@/lib/data";
 import Product from "@/lib/components/Product";
+import { promises as fs } from "fs";
+import type { ProductType } from "../definitions";
+import { fetchInitialProductsFromDb } from "../data";
 
 export default async function InitialProducts() {
+    const initialProducts = await fetchInitialProductsFromDb();
+
+    await writeDataToLocalFile('src/json/initialproducts.json', initialProducts);
+
     const [
-        electronic_data,
-        clothing_data,
-        cosmetic_data,
-        market_data
-    ] = await parseProducts();
+        electronic_data, clothing_data, cosmetic_data, market_data
+    ] = await parseInitialProducts(initialProducts);
 
     return (
         <div className="flex mt-4 grow flex-col gap-4 items-center bg-orange-100">
@@ -22,7 +25,7 @@ export default async function InitialProducts() {
                         electronic_data.map(product =>
                             <Link key={product.id} href={
                                 {
-                                    pathname: `/product/${product.id}`                               
+                                    pathname: `/product/${product.id}`
                                 }
                             }>
                                 <Product key={product.id} product={product} />
@@ -75,4 +78,45 @@ export default async function InitialProducts() {
             </div>
         </div>
     )
+}
+
+
+async function parseInitialProducts(initialProducts: ProductType[]) {
+
+    let electronic_data: ProductType[] = [];
+    let clothing_data: ProductType[] = [];
+    let cosmetic_data: ProductType[] = [];
+    let market_data: ProductType[] = [];
+
+    initialProducts.forEach(product => {
+        let category = product.category;
+        switch (category) {
+            case "electronic":
+                electronic_data.push(product);
+                break;
+            case "clothing":
+                clothing_data.push(product);
+                break;
+            case "cosmetic":
+                cosmetic_data.push(product);
+                break;
+            case "market":
+                market_data.push(product);
+                break;
+            default:
+                break;
+        }
+    });
+
+    return [electronic_data, clothing_data, cosmetic_data, market_data];
+}
+
+async function writeDataToLocalFile(filePath: string, initialProducts: ProductType[]) {
+    fs.writeFile(filePath, JSON.stringify(initialProducts, null, 4), 'utf8')
+        .then(() => {
+            console.log('InitialProducts written to local file successfully.');
+        })
+        .catch((err) => {
+            console.error('Error writing local file:', err);
+        });
 }
