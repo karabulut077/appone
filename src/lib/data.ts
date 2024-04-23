@@ -7,8 +7,6 @@ import path from "path";
 
 export async function getProductFromLocalFileByID(id: string) {
 
-    
-
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
     let fileData: ProductType[] = [];
