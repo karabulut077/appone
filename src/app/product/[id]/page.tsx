@@ -4,8 +4,7 @@ import { getProductFromLocalFileByID } from "@/lib/data";
 export default async function Page({ params }: { params: { id: string } }) {
   const { id } = params;
   let product = await getProductFromLocalFileByID(id);
-
-
+  console.log("fetched product: ", product);
   return (
     <div>
       <h2>id: { product?.id } </h2>

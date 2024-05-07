@@ -4,15 +4,16 @@ import Product from "@/lib/components/Product";
 import { promises as fs } from "fs";
 import type { ProductType } from "../definitions";
 import { fetchInitialProductsFromDb } from "../data";
+import path from "path";
 
 export default async function InitialProducts() {
     const initialProducts = await fetchInitialProductsFromDb();
 
-    await writeDataToLocalFile('src/json/initialproducts.json', initialProducts);
+    await writeDataToLocalFile('initialproducts.json', initialProducts);
 
     const [
         electronic_data, clothing_data, cosmetic_data, market_data
-    ] = await parseInitialProducts(initialProducts);
+    ] = parseInitialProducts(initialProducts);
 
     return (
         <div className="flex mt-4 grow flex-col gap-4 items-center bg-orange-100">
@@ -81,7 +82,7 @@ export default async function InitialProducts() {
 }
 
 
-async function parseInitialProducts(initialProducts: ProductType[]) {
+function parseInitialProducts(initialProducts: ProductType[]) {
 
     let electronic_data: ProductType[] = [];
     let clothing_data: ProductType[] = [];
@@ -111,10 +112,12 @@ async function parseInitialProducts(initialProducts: ProductType[]) {
     return [electronic_data, clothing_data, cosmetic_data, market_data];
 }
 
-async function writeDataToLocalFile(filePath: string, initialProducts: ProductType[]) {
-    fs.writeFile(filePath, JSON.stringify(initialProducts, null, 4), 'utf8')
+async function writeDataToLocalFile(fileName: string, initialProducts: ProductType[]) {
+    const filePath = path.join('/tmp', fileName);
+
+    await fs.writeFile(filePath, JSON.stringify(initialProducts, null, 4), 'utf8')
         .then(() => {
-            console.log('InitialProducts written to local file successfully.');
+            console.log('InitialProducts written to local file successfully.', filePath);
         })
         .catch((err) => {
             console.error('Error writing local file:', err);
