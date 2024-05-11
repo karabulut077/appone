@@ -9,14 +9,14 @@ export default async function InitialProducts() {
     const initialProducts = await fetchInitialProductsFromDb();
 
     const [
-        electronic_data, clothing_data, cosmetic_data, market_data
+        electronic_data, clothing_data, cosmetic_data
     ] = parseInitialProducts(initialProducts);
 
     return (
         <div className="flex mt-4 grow flex-col gap-4 items-center bg-orange-100">
             <div className="flex flex-col bg-sky-200">
                 <div className="flex items-center justify-center">
-                    <b>elektronik</b>
+                    <b>çok satanlar</b>
                 </div>
                 <div className="flex flex-row items-center justify-center gap-4">
                     {
@@ -34,7 +34,7 @@ export default async function InitialProducts() {
             </div>
             <div className="flex flex-col bg-sky-200">
                 <div className="flex items-center justify-center">
-                    <b>giyim</b>
+                    <b>indirimdeki ürünler</b>
                 </div>
                 <div className="flex flex-row items-center justify-center gap-4">
                     {
@@ -48,25 +48,11 @@ export default async function InitialProducts() {
             </div>
             <div className="flex flex-col bg-sky-200">
                 <div className="flex items-center justify-center">
-                    <b>kozmetik</b>
+                    <b>en çok ziyaret edilenler</b>
                 </div>
                 <div className="flex flex-row items-center justify-center gap-4">
                     {
                         cosmetic_data.map(product =>
-                            <Link key={product.id} href={`/product/${product.id}`}>
-                                <Product key={product.id} product={product} />
-                            </Link>
-                        )
-                    }
-                </div>
-            </div>
-            <div className="flex flex-col bg-sky-200">
-                <div className="flex items-center justify-center">
-                    <b>market</b>
-                </div>
-                <div className="flex flex-row items-center justify-center gap-4">
-                    {
-                        market_data.map(product =>
                             <Link key={product.id} href={`/product/${product.id}`}>
                                 <Product key={product.id} product={product} />
                             </Link>
