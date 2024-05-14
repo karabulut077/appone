@@ -3,7 +3,23 @@
 import { unstable_noStore } from "next/cache";
 import { ProductType } from "@/lib/definitions";
 
-export async function getProductByIdFromDb( id: string ){
+export async function getProducts() {
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Basic YWRtaW46cGFzc3dvcmQ=");
+
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
+
+    const response = await fetch('http://18.117.149.87/api/data');
+    const dataArray = await response.json();
+
+    return dataArray;
+}
+
+export async function getProductByIdFromDb(id: string) {
     unstable_noStore();
 
     await new Promise((resolve) => setTimeout(resolve, 2000));
