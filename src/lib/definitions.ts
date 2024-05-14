@@ -6,5 +6,5 @@ export type ProductType = {
     category: string,
     price: number,
     img_src: string,
-    owner: string
+    owner_id: string
 };
