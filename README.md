@@ -1,2 +1,1 @@
-hobby e-commerce project  
-sorry about ugly ui
+Next.js E-commerce web application
