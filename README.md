@@ -1,2 +1,2 @@
 # appone
-Next.js E-commerce web application
+Node.js e-commerce web application
