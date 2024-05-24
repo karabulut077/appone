@@ -1,7 +1,7 @@
 
 
 import { Suspense } from "react";
-import InitialProducts from "@/lib/components/InitialProducts";
+import ShowcaseProducts from "@/lib/components/ShowcaseProducts";
 
 export default async function Page() {
   return (
@@ -21,7 +21,7 @@ export default async function Page() {
         </div>
       </div>
       <Suspense fallback={<p>Loading products...</p>}>
-        <InitialProducts />
+        <ShowcaseProducts />
       </Suspense>
     </main>
   );
