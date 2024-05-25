@@ -10,7 +10,7 @@ export default function Product({product}: {
             <Image 
                 src={product.images[0]}
                 width={250} height={250}
-                alt="product picture"
+                alt={product.images[0]}
             />
             <label>
                 <b>{product.brand_name}</b> {product.name}

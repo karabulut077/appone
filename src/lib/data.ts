@@ -1,6 +1,6 @@
 
 
-import { unstable_noStore } from "next/cache";
+import { unstable_noStore as noStore} from "next/cache";
 import { ProductType } from "@/lib/definitions";
 
 export async function getProducts() {
@@ -20,9 +20,7 @@ export async function getProducts() {
 }
 
 export async function getProductByIdFromDb(id: string) {
-    unstable_noStore();
-
-    await new Promise((resolve) => setTimeout(resolve, 500));
+    noStore();
 
     const response = await fetch('https://66055db72ca9478ea18021fc.mockapi.io/product');
     const product: ProductType[] = await response.json();
@@ -32,42 +30,54 @@ export async function getProductByIdFromDb(id: string) {
 
 export async function getBestSellingProducts() {
 
-    unstable_noStore(); // dynamic rendering
+    noStore(); // dynamic rendering
     console.log("fetching bestseller products ...");
 
+    const response = await fetch('http://localhost:3004/products');
+    const json = await response.json();
 
-    await new Promise((resolve) => setTimeout(resolve, 500));
-
-    const response = await fetch('https://66055db72ca9478ea18021fc.mockapi.io/products');
-    const products: ProductType[] = await response.json();
-
+    let products: ProductType[] | [] = [];
+    if(response.status == 200){
+        products = json.data;
+    }
+    else if(response.status == 500){
+        console.log(json.errmsg);
+    }
     return products;
 }
 
 export async function getProductsOnSale() {
 
-    unstable_noStore(); // dynamic rendering
+    noStore(); // dynamic rendering
     console.log("fetching products on sale ...");
 
+    const response = await fetch('http://localhost:3004/products');
+    const json = await response.json();
 
-    await new Promise((resolve) => setTimeout(resolve, 500));
-
-    const response = await fetch('https://66055db72ca9478ea18021fc.mockapi.io/products');
-    const products: ProductType[] = await response.json();
-
+    let products: ProductType[] | [] = [];
+    if(response.status == 200){
+        products = json.data;
+    }
+    else if(response.status == 500){
+        console.log(json.errmsg);
+    }
     return products;
 }
 
 export async function getMostVisitedProducts() {
 
-    unstable_noStore(); // dynamic rendering
+    noStore(); // dynamic rendering
     console.log("fetching most visited products ...");
 
+    const response = await fetch('http://localhost:3004/products');
+    const json = await response.json();
 
-    await new Promise((resolve) => setTimeout(resolve, 500));
-
-    const response = await fetch('https://66055db72ca9478ea18021fc.mockapi.io/products');
-    const products: ProductType[] = await response.json();
-
+    let products: ProductType[] | [] = [];
+    if(response.status == 200){
+        products = json.data;
+    }
+    else if(response.status == 500){
+        console.log(json.errmsg);
+    }
     return products;
 }
