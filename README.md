@@ -1,2 +1,2 @@
-hobby e-commerce project  
-sorry about ugly ui
+# appone
+Node.js e-commerce web application
