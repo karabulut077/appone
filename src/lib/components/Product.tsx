@@ -8,11 +8,14 @@ export default function Product({product}: {
     return(
         <div className="flex flex-col bg-lime-100">
             <Image 
-                src={product.img_src}
+                src={product.images[0]}
                 width={250} height={250}
-                alt="product picture"
+                alt={product.images[0]}
             />
-            <label>{product.name} </label>
+            <label>
+                <b>{product.brand_name}</b> {product.name}
+            </label>
+            <label>{product.price} TL</label>
         </div>
     );
 }

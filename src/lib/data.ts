@@ -1,6 +1,6 @@
 
 
-import { unstable_noStore } from "next/cache";
+import { unstable_noStore as noStore} from "next/cache";
 import { ProductType } from "@/lib/definitions";
 
 export async function getProducts() {
@@ -20,9 +20,7 @@ export async function getProducts() {
 }
 
 export async function getProductByIdFromDb(id: string) {
-    unstable_noStore();
-
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    noStore();
 
     const response = await fetch('https://66055db72ca9478ea18021fc.mockapi.io/product');
     const product: ProductType[] = await response.json();
@@ -30,17 +28,56 @@ export async function getProductByIdFromDb(id: string) {
     return product[0];
 }
 
-export async function fetchInitialProductsFromDb() {
-    // toDo: tüm ürünler yerine belirli sayıda ürün çek (belki burada değil servis tarafında yapılabilir)
+export async function getBestSellingProducts() {
 
-    unstable_noStore(); // dynamic rendering
-    console.log("fetching products ...");
+    noStore(); // dynamic rendering
+    console.log("fetching bestseller products ...");
 
+    const response = await fetch('http://18.117.149.87:80/products');
+    const json = await response.json();
 
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    let products: ProductType[] | [] = [];
+    if(response.status == 200){
+        products = json.data;
+    }
+    else if(response.status == 500){
+        console.log(json.errmsg);
+    }
+    return products;
+}
 
-    const response = await fetch('https://66055db72ca9478ea18021fc.mockapi.io/products');
-    const products: ProductType[] = await response.json();
+export async function getProductsOnSale() {
 
+    noStore(); // dynamic rendering
+    console.log("fetching products on sale ...");
+
+    const response = await fetch('http://18.117.149.87:80/products');
+    const json = await response.json();
+
+    let products: ProductType[] | [] = [];
+    if(response.status == 200){
+        products = json.data;
+    }
+    else if(response.status == 500){
+        console.log(json.errmsg);
+    }
+    return products;
+}
+
+export async function getMostVisitedProducts() {
+
+    noStore(); // dynamic rendering
+    console.log("fetching most visited products ...");
+
+    const response = await fetch('http://18.117.149.87:80/products');
+    const json = await response.json();
+
+    let products: ProductType[] | [] = [];
+    if(response.status == 200){
+        products = json.data;
+    }
+    else if(response.status == 500){
+        console.log(json.errmsg);
+    }
     return products;
 }
