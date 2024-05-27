@@ -5,6 +5,7 @@ import type { ProductType } from "@/lib/definitions";
 export default function Product({product}: {
     product: ProductType
 }){
+    console.log(product);
     return(
         <div className="flex flex-col bg-lime-100">
             <Image 

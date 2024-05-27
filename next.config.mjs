@@ -4,7 +4,7 @@ const nextConfig = {
         remotePatterns: [
             {
               protocol: 'https',
-              hostname: "www.colgateprofessional.com"
+              hostname: "d38yui133v8qpg.cloudfront.net"
             }
         ]
     }

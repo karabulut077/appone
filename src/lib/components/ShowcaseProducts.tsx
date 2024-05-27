@@ -8,7 +8,7 @@ export default async function ShowcaseProducts() {
     const bestSellingProducts = await getBestSellingProducts();
     const productsOnSale = await getProductsOnSale();
     const mostVisitedProducts = await getMostVisitedProducts();
-
+    
     return (
         <div className="flex mt-4 grow flex-col gap-4 items-center bg-orange-100">
             <div className="flex flex-col bg-sky-200">
