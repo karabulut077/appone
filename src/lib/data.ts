@@ -19,13 +19,21 @@ export async function getProducts() {
     return dataArray;
 }
 
-export async function getProductByIdFromDb(id: string) {
-    noStore();
+export async function getProductById(id: string) {
+    noStore(); // dynamic rendering
+    console.log("fetching product by id: ", id);
 
-    const response = await fetch('https://66055db72ca9478ea18021fc.mockapi.io/product');
-    const product: ProductType[] = await response.json();
+    const response = await fetch('http://18.117.149.87:80/product?id=' + id);
+    const json = await response.json();
 
-    return product[0];
+    let product: ProductType | undefined = undefined;
+    if(response.status == 200){
+        json.data[0] && (product = json.data[0]);
+    }
+    else if(response.status == 500){
+        console.log(json.errmsg);
+    }
+    return product;
 }
 
 export async function getBestSellingProducts() {
