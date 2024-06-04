@@ -3,10 +3,14 @@ const nextConfig = {
     images: {
         remotePatterns: [
             {
-              protocol: 'https',
-              hostname: "d38yui133v8qpg.cloudfront.net"
+              protocol: process.env.IMG_PROTOCOL,
+              hostname: process.env.IMG_DOMAIN
             }
         ]
+    },
+    env: {
+        SERVER_IP: process.env.SERVER_IP,
+        SERVER_PORT : process.env.SERVER_PORT
     }
 };
 
