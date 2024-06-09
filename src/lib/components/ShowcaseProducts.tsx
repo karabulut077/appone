@@ -1,6 +1,6 @@
 
 import Link from "next/link";
-import Product from "@/lib/components/Product";
+import Product from "@/lib/components/product/Product";
 import { getBestSellingProducts, getProductsOnSale, getMostVisitedProducts } from "@/lib/data";
 
 

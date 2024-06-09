@@ -1,25 +1,26 @@
 
 
-import { unstable_noStore as noStore} from "next/cache";
-import { ProductType } from "@/lib/definitions";
+import { unstable_noStore as noStore } from "next/cache";
+import { ProductType, CommentType } from "@/lib/definitions";
 
 const SERVER_IP = process.env.SERVER_IP;
 const SERVER_PORT = process.env.SERVER_PORT;
 
-export async function getProducts() {
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", "Basic YWRtaW46cGFzc3dvcmQ=");
+export async function getProductCommentsById(product_id: string) {
+    noStore(); // dynamic rendering
+    console.log("fetching comments by product id: ", product_id);
 
-    var requestOptions = {
-        method: 'GET',
-        headers: myHeaders,
-        redirect: 'follow'
-    };
+    const response = await fetch(`http://${SERVER_IP}:${SERVER_PORT}/comments?id=` + product_id);
+    const json = await response.json();
 
-    const response = await fetch('http://18.117.149.87/api/data');
-    const dataArray = await response.json();
-
-    return dataArray;
+    let comments: CommentType[] = [];
+    if (response.status == 200) {
+        comments = json.data;
+    }
+    else if (response.status == 500) {
+        console.log(json.errmsg);
+    }
+    return comments;
 }
 
 export async function getProductById(id: string) {
@@ -30,10 +31,10 @@ export async function getProductById(id: string) {
     const json = await response.json();
 
     let product: ProductType | undefined = undefined;
-    if(response.status == 200){
+    if (response.status == 200) {
         json.data[0] && (product = json.data[0]);
     }
-    else if(response.status == 500){
+    else if (response.status == 500) {
         console.log(json.errmsg);
     }
     return product;
@@ -48,10 +49,10 @@ export async function getBestSellingProducts() {
     const json = await response.json();
 
     let products: ProductType[] | [] = [];
-    if(response.status == 200){
+    if (response.status == 200) {
         products = json.data;
     }
-    else if(response.status == 500){
+    else if (response.status == 500) {
         console.log(json.errmsg);
     }
     return products;
@@ -66,10 +67,10 @@ export async function getProductsOnSale() {
     const json = await response.json();
 
     let products: ProductType[] | [] = [];
-    if(response.status == 200){
+    if (response.status == 200) {
         products = json.data;
     }
-    else if(response.status == 500){
+    else if (response.status == 500) {
         console.log(json.errmsg);
     }
     return products;
@@ -84,10 +85,10 @@ export async function getMostVisitedProducts() {
     const json = await response.json();
 
     let products: ProductType[] | [] = [];
-    if(response.status == 200){
+    if (response.status == 200) {
         products = json.data;
     }
-    else if(response.status == 500){
+    else if (response.status == 500) {
         console.log(json.errmsg);
     }
     return products;

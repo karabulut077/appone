@@ -1,19 +1,19 @@
 
-import { getProductById, getProducts } from "@/lib/data";
+import { getProductById } from "@/lib/data";
+import ProductGallery from "@/lib/components/product/ProductGallery";
+import ProductComments from "@/lib/components/product/ProductComments";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const { id } = params;
 
   // TODO: solve an extra query to the database for data that already exists
   const product = await getProductById(id); // unnecessary
-
+  const images = product?.images;
   return (
     <div>
-        <h2>_id: {product?._id}</h2>
-        <h2>name: {product?.name}</h2>
-        <h2>brand: {product?.brand_name}</h2>
-        <h2>price: {product?.price}</h2>
-        <h2>images: {product?.images}</h2>
+      product details of <b>{product?.brand_name + " " + product?.name}</b>
+      <ProductGallery images={images}/>
+      <ProductComments product_id={id}/>
     </div>
   );
 }

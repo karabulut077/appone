@@ -8,3 +8,9 @@ export type ProductType = {
     brand_name: string,
     images: string[]
 };
+
+export type CommentType = {
+    _id: string,
+    product_id: string,
+    text: string
+}
