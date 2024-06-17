@@ -15,7 +15,6 @@ export default function Product({product}: {
             <label>
                 <b>{product.brand_name}</b> {product.name}
             </label>
-            <label>{product.price} TL</label>
         </div>
     );
 }

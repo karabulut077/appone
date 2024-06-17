@@ -1,10 +1,10 @@
 
-import { getProductCommentsById } from "@/lib/data";
+import { getProductComments } from "@/lib/data";
 
 export default async function ProductComments({ product_id }: {
     product_id: string
 }) {
-    const product_comments = await getProductCommentsById(product_id);
+    const product_comments = await getProductComments(product_id);
     return (
         <div className="flex flex-col">
             {

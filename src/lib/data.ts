@@ -1,12 +1,12 @@
 
 
 import { unstable_noStore as noStore } from "next/cache";
-import { ProductType, CommentType } from "@/lib/definitions";
+import { ProductType, CommentType, StoreType, ProductDetailsModel } from "@/lib/definitions";
 
 const SERVER_IP = process.env.SERVER_IP;
 const SERVER_PORT = process.env.SERVER_PORT;
 
-export async function getProductCommentsById(product_id: string) {
+export async function getProductComments(product_id: string) {
     noStore(); // dynamic rendering
     console.log("fetching comments by product id: ", product_id);
 
@@ -23,21 +23,21 @@ export async function getProductCommentsById(product_id: string) {
     return comments;
 }
 
-export async function getProductById(id: string) {
+export async function getProductDetails(product_id: string) {
     noStore(); // dynamic rendering
-    console.log("fetching product by id: ", id);
+    console.log("fetching details by product id: ", product_id);
 
-    const response = await fetch(`http://${SERVER_IP}:${SERVER_PORT}/product?id=` + id);
+    const response = await fetch(`http://${SERVER_IP}:${SERVER_PORT}/details?product_id=` + product_id);
     const json = await response.json();
 
-    let product: ProductType | undefined = undefined;
+    let details: ProductDetailsModel | undefined = undefined;
     if (response.status == 200) {
-        json.data[0] && (product = json.data[0]);
+        details = json.data;
     }
     else if (response.status == 500) {
         console.log(json.errmsg);
     }
-    return product;
+    return details;
 }
 
 export async function getBestSellingProducts() {
